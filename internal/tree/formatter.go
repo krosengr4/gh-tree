@@ -2,19 +2,13 @@ package tree
 
 import (
 	"fmt"
+	"gh-tree/internal/github"
 	"path/filepath"
 	"sort"
 	"strings"
 
 	"github.com/fatih/color"
 )
-
-// Represents a file or directory in the tree
-type TreeNode struct {
-	Path string
-	Type string
-	Size int
-}
 
 // Represents a node in the tree hierarchy
 type node struct {
@@ -32,7 +26,7 @@ var (
 )
 
 // Formats and prints the tree structure
-func FormatTree(nodes []TreeNode, maxDepth int, useColor bool) {
+func FormatTree(nodes []github.TreeNode, maxDepth int, useColor bool) {
 	if !useColor {
 		color.NoColor = true
 	}
@@ -50,7 +44,7 @@ func FormatTree(nodes []TreeNode, maxDepth int, useColor bool) {
 }
 
 // Construct a tree from flat list of nodes
-func buildTree(nodes []TreeNode) *node {
+func buildTree(nodes []github.TreeNode) *node {
 	root := &node{
 		name:     ".",
 		isDir:    true,
