@@ -44,7 +44,7 @@ func NewClient(token string) *Client {
 
 func (c *Client) GetTree(owner, repo, branch string, recursive bool) ([]TreeNode, error) {
 	// Get reference for the branch
-	ref, _, err := c.client.Git.GetRef(c.ctx, owner, repo, "refs/head/"+branch)
+	ref, _, err := c.client.Git.GetRef(c.ctx, owner, repo, "refs/heads/"+branch)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get branch reference: %w", err)
 	}
